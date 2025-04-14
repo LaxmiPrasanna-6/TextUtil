@@ -6,14 +6,12 @@ function TextForm(props) {
   {
     let newText=text.toUpperCase()
     setText(newText)
-    console.log("You have clicked on upoper case"+text)
     props.showAlert("success","converted to uppercase")
   }
   function Lowercase()
   {
     let newText=text.toLowerCase()
     setText(newText)
-    console.log("You have clicked on upoper case"+text)
     props.showAlert("success","converted to Lowercase")
   }
   function handleOnchange(event)
@@ -29,9 +27,7 @@ function TextForm(props) {
   }
   function copyText()
   {
-    var xyz=document.getElementById("exampleFormControlTextarea1")
-    xyz.select()
-    navigator.clipboard.writeText(xyz.value)
+    navigator.clipboard.writeText(text)
   }
   function extraSpaces()
   {
@@ -44,19 +40,19 @@ function TextForm(props) {
     <div className='container'>
         <form>
             <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Example textarea</label>
+            <label htmlFor="exampleFormControlTextarea1" >Example text to Analyze</label>
             <textarea className="form-control" value={text} onChange={handleOnchange} id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
         </form>
-        <button type="button" className="btn btn-primary mx-1" onClick={Uppercase}>Uppercase</button>
-        <button type="button" className="btn btn-primary mx-1" onClick={Lowercase}>Lowercase</button>
-        <button type="button" className="btn btn-primary mx-1" onClick={clearText}>Clear</button>
-        <button type="button" className="btn btn-primary mx-1" onClick={copyText}>Copy </button>
-        <button type="button" className="btn btn-primary mx-1" onClick={extraSpaces}>removeSpaces</button>
+        <button type="button" className="btn btn-primary mx-1 my-1" onClick={Uppercase}>Uppercase</button>
+        <button type="button" className="btn btn-primary mx-1 my-1" onClick={Lowercase}>Lowercase</button>
+        <button type="button" className="btn btn-primary mx-1 my-1" onClick={clearText}>Clear</button>
+        <button type="button" className="btn btn-primary mx-1 my-1" onClick={copyText}>Copy </button>
+        <button type="button" className="btn btn-primary mx-1 my-1" onClick={extraSpaces}>removeSpaces</button>
     </div>
-    <div className='container my-2'>
-      <h1>Your text summary</h1>
-      <p>{text.split(" ").length} words and {text.length} letters </p>
+    <div className='container'>
+      <h2>Your Text Summary</h2>
+      <p>{text.split(/\s+/).filter((ele)=>{return ele.length!==0}).length} words and {text.length} letters </p>
     </div>
     </>
 

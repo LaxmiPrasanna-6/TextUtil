@@ -1,76 +1,54 @@
 import React, { useState } from 'react';
+import './About.css';
 
-function About() {
-  const [mystyle,setMystyle]=useState({
-    color:"white",
-    background:"black"
-  })
-  const [btntext,setBtnText]=useState("Enable light mode")
-  function togglestyle(){
-    if(mystyle.color==='white'){
-      setMystyle({
-        color:"black",
-    background:"white"
-      })
-      setBtnText("Enable dark mode");
-    }else{
-      setMystyle({
-        color:"white",
-    background:"black"
+export default function About() {
+  const [openIndex, setOpenIndex] = useState(null);
 
-      })
-      setBtnText("Enable light mode");
+  const toggleAccordion = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
-    }
-  }
   return (
-    <div  className="container" style={mystyle}>
-      <h1 className='my-1'>About us</h1>
-      <div className="accordion" id="accordionExample">
-    <div className="accordion-item">
-      <h2 className="accordion-header">
-        <button className="accordion-button" style={mystyle} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-          Accordion Item #1
-        </button>
-      </h2>
-      <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-        <div className="accordion-body">
-          <strong>This is the first item's accordion body.</strong> 
+    <div className="about-container">
+      <h1>About Us</h1>
+      <div className="accordion-section">
+        <div className="accordion-item">
+          <button onClick={() => toggleAccordion(1)} className="accordion-title">
+            What is TextUtils?
+          </button>
+          <div className={`accordion-content ${openIndex === 1 ? 'show' : ''}`}>
+            <p>
+              <strong>TextUtils is a versatile text utility app</strong> that empowers users to efficiently manipulate their text...
+            </p>
+          </div>
         </div>
-      </div>
-    </div>
-    <div className="accordion-item">
-      <h2 className="accordion-header">
-        <button className="accordion-button collapsed" style={mystyle} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Accordion Item #2
-        </button>
-      </h2>
-      <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-        <div className="accordion-body">
-          <strong>This is the second item's accordion body.</strong> 
-        </div>
-      </div>
-    </div>
-    <div className="accordion-item">
-      <h2 className="accordion-header">
-        <button className="accordion-button collapsed" style={mystyle} type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Accordion Item #3
-        </button>
-      </h2>
-      <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-        <div className="accordion-body">
-          <strong>This is the third item's accordion body.</strong> 
-        </div>
-      </div>
-    </div>
-  </div>
-  <div className='container my-3'>
-    <button className='btn btn-primary' onClick={togglestyle} > {btntext}</button>
 
-  </div>
+        <div className="accordion-item">
+          <button onClick={() => toggleAccordion(2)} className="accordion-title">
+            Features of TextUtils
+          </button>
+          <div className={`accordion-content ${openIndex === 2 ? 'show' : ''}`}>
+            <ul>
+              <li>Convert text to UPPERCASE</li>
+              <li>Convert text to lowercase</li>
+              <li>Remove extra spaces</li>
+              <li>Copy text to clipboard</li>
+              <li>Live preview and word/character count</li>
+            </ul>
+          </div>
+        </div>
 
+        <div className="accordion-item">
+          <button onClick={() => toggleAccordion(3)} className="accordion-title">
+            Why Choose TextUtils?
+          </button>
+          <div className={`accordion-content ${openIndex === 3 ? 'show' : ''}`}>
+            <p>
+              TextUtils is fast, simple, and free to use. It works in any modern browser...
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-
-export default About;

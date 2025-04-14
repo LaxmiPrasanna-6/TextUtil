@@ -5,11 +5,11 @@ import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 // import About from "./components/About"
 import React,{useState} from 'react';
-// import { BrowserRouter as Router,
-//   Routes,
-//   Route
-//  } from 'react-router-dom';
-// import About from './components/About';
+import { BrowserRouter as Router,
+  Routes,
+  Route
+ } from 'react-router-dom';
+import About from './components/About';
 function App() {
   let [alert,setAlert]=useState(null)
   function showAlert(message,type)
@@ -38,16 +38,16 @@ function App() {
    }
   return (
     <>
-        {/* <Router> */}
+        <Router>
               <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
               <Alert alert={alert}/>
               <div className='container'>
-              {/* <Routes> */}
-              {/* <Route path="/about" element={<About />} /> */}
-              <TextForm showAlert={showAlert} />
-              {/* </Routes> */}
+              <Routes>
+              <Route path="/about" element={<About />} />
+              <Route path="/" element={<TextForm showAlert={showAlert} />} />
+              </Routes>
               </div>
-        {/* </Router> */}
+        </Router>
       
      
     </>
